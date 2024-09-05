@@ -2,7 +2,7 @@ import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {inject} from "@angular/core";
 import {AuthService} from "../service/auth.service";
 import {AuthenticationActions} from "./auth.actions";
-import {switchMap, tap} from "rxjs";
+import {switchMap} from "rxjs";
 import {mapResponse} from "@ngrx/operators";
 
 export const registerEffects = createEffect(
