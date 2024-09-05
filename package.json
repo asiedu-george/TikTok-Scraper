@@ -28,6 +28,7 @@
     "@ngrx/store-devtools": "^18.0.2",
     "jwt-decode": "^4.0.0",
     "ng-angular-popup": "^0.6.2",
+    "ngx-spinner": "^17.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
