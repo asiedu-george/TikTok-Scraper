@@ -1,5 +1,6 @@
 export const constants = {
-  successMessage: "Success",
-  errorMessage: "Error",
+  success: "Success",
+  error: "Error",
+  errorMessage: "Incorrect email or password",
   toastDuration: 5000
 }
