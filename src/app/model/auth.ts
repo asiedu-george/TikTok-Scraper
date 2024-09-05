@@ -1,8 +1,7 @@
 export interface Register {
   additional_properties: {
     phone_number: string,
-    date_of_birth: string,
-    gender: string
+    date_of_birth: string
   },
   email: string;
   password: string;
