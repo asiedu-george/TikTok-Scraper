@@ -23,3 +23,23 @@ export const registerEffects = createEffect(
   },
   { functional: true, dispatch: true }
 )
+
+export const loginEffects = createEffect(
+  (
+    actions$ = inject(Actions),
+    authService = inject(AuthService)) => {
+    return actions$.pipe(
+      ofType(AuthenticationActions.login),
+      switchMap(({user}) =>
+        authService.login(user).pipe(
+          mapResponse({
+            next: (response) => AuthenticationActions.loginSuccess({userData: response}),
+            error: (error: string) => AuthenticationActions.authenticationFailure({error})
+          })
+        )
+      ),
+
+    )
+  },
+  { functional: true, dispatch: true }
+)
