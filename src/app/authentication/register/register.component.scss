@@ -31,6 +31,7 @@
         display: flex;
         flex-direction: column;
         gap: 4px;
+        position: relative;
 
         label {
           color: var(--white);
@@ -56,12 +57,24 @@
           }
         }
 
+        .eye-icon {
+          position: absolute;
+          top: 48%;
+          right: 0;
+          cursor: pointer;
+          max-width: 2.5rem;
+
+          img {
+            width: 50%;
+          }
+        }
+
         .error {
-          @include flex-center;
+          @include justify-between;
 
           p {
             color: var(--tikTok-pink);
-            font-size: 12px;
+            font-size: 10px;
           }
         }
       }
@@ -78,10 +91,10 @@
           &:hover {
             background-color: var(--tiktok-inputColor);
           }
+        }
 
-          &:hover, &:active, &:focus {
-            background-color: var(--tiktok-buttonHover);
-          }
+        &:hover, &:active, &:focus {
+          background-color: var(--tiktok-buttonHover);
         }
       }
 
