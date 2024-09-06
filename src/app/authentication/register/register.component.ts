@@ -18,7 +18,7 @@ export class RegisterComponent {
 
   constructor(private fb: FormBuilder, private store: Store<AuthenticationState>) {
     this.signupForm = this.fb.group({
-      additionalProperties: this.fb.group({
+      additional_properties: this.fb.group({
         phone_number: ['', Validators.required],
         date_of_birth: ['', Validators.required]
       }),
@@ -36,11 +36,11 @@ export class RegisterComponent {
     this.store.dispatch(AuthenticationActions.register({user}))
   }
 
-  toggleShowPassword(): void {
+  public toggleShowPassword(): void {
     this.showPassword = !this.showPassword
   }
 
-  public getControlValue(value: string) {
+  public getControl(value: string) {
     return this.signupForm.get(value)
   }
 }
