@@ -1,0 +1,138 @@
+@import "../../../styles.scss";
+
+.container {
+  @include center_contents;
+  overflow: hidden;
+  height: 100vh;
+
+  .form-container {
+    @include flex-column;
+    background-color: var(--tikTok-secondary);
+    padding: 3% 0;
+    width: 500px;
+    height: auto;
+    border: none;
+    border-radius: 8px;
+
+    h2 {
+      font-size: 32px;
+      text-align: center;
+      color: var(--white);
+      margin-bottom: 10px;
+      line-height: 20px;
+    }
+
+    .form-group {
+      @include flex-column;
+      padding: 3% 11.5% 20%;
+      border-bottom: 2px solid var(--tiktok-inputColor);
+
+      .input-control {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        label {
+          color: var(--white);
+          font-size: 13px;
+          font-weight: 500;
+        }
+
+        input {
+          padding: 12px 16px;
+          caret-color: var(--tikTok-pink);
+          color: var(--white);
+          border: none;
+          border-radius: 4px;
+          background-color: var(--tiktok-inputColor);
+
+          &::placeholder {
+            color: var(--tikTok-loginText);
+            font-size: 15px;
+          }
+
+          &:focus {
+            outline: none;
+          }
+        }
+
+        .error {
+          @include flex-center;
+
+          p {
+            color: var(--tikTok-pink);
+            font-size: 12px;
+          }
+        }
+      }
+
+      button {
+        @include auth_button;
+        margin-top: 16px;
+
+        &:disabled {
+          background-color: var(--tiktok-inputColor);
+          cursor: not-allowed;
+          color: var(--tikTok-loginText);
+
+          &:hover {
+            background-color: var(--tiktok-inputColor);
+          }
+
+          &:hover, &:active, &:focus {
+            background-color: var(--tiktok-buttonHover);
+          }
+        }
+      }
+    }
+  }
+
+  .account {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--white);
+    margin-top: 10px;
+
+    span {
+      color: var(--tikTok-pink);
+      font-weight: 600;
+      cursor: pointer;
+
+      &:hover {
+        color: var(--tiktok-buttonHover);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 998px) {
+  .container {
+    width: 100%;
+
+    .form-container {
+      padding: 5% 0 3%;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    width: 100%;
+    height: auto;
+    overflow: auto;
+
+    .form-container {
+      padding: 10% 0 3%;
+      width: 100%;
+
+      h2 {
+        font-size: 28px;
+      }
+
+      .form-group {
+        padding: 3% 11.5%;
+      }
+    }
+  }
+}

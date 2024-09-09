@@ -1,1 +1,47 @@
-<p>login works!</p>
+<div class="container">
+  @if (loading()) {
+    <ngx-spinner
+      bdColor="rgba(14, 14, 14, 0.8)"
+      size="large"
+      color="#ff0050"
+      type="ball-spin-clockwise-fade"
+    ></ngx-spinner>
+  }
+  <div class="form-container">
+    <h2>Log in to TikTok</h2>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()" class="form-group">
+      <div class="input-control">
+        <label for="email">Email</label>
+        <input type="email" id="email" formControlName="email" required placeholder="Email address">
+        <div class="error"
+             *ngIf="getControl('email')?.invalid &&
+                      (getControl('email')?.touched ||
+                       getControl('email')?.dirty)">
+          <p *ngIf="getControl('email')?.errors?.['required']">
+            Email is required
+          </p>
+        </div>
+      </div>
+      <div class="input-control">
+        <label for="password">Password</label>
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          id="password" formControlName="password" required placeholder="Password">
+        <div class="error"
+             *ngIf="getControl('password')?.invalid &&
+                      (getControl('password')?.touched ||
+                       getControl('password')?.dirty)">
+          <p *ngIf="getControl('password')?.errors?.['required']">
+            Password is required
+          </p>
+        </div>
+      </div>
+      <button type="submit" [disabled]="loginForm.invalid">Log in</button>
+    </form>
+    <p class="account">
+      Already have an account?
+      <span routerLink="/register">Sign up</span>
+    </p>
+  </div>
+</div>

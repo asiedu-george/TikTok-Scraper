@@ -13,8 +13,8 @@ import {selectLoading} from "../store/auth.selectors";
 })
 export class LoginComponent {
   public loginForm: FormGroup;
-  private showPassword:  boolean = false;
-  public loading = this.store.selectSignal(selectLoading)
+  public showPassword:  boolean = false;
+  public loading = this.store.selectSignal(selectLoading);
 
   constructor(private store: Store<AuthenticationState>, private fb: FormBuilder) {
     this.loginForm = this.fb.group({
@@ -34,7 +34,7 @@ export class LoginComponent {
     this.showPassword = !this.showPassword
   }
 
-  public getControlValue(value: string) {
+  public getControl(value: string) {
     return this.loginForm.get(value)
   }
 }
