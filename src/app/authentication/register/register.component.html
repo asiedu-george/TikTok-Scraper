@@ -1,11 +1,13 @@
 <div class="container">
   @if (loading()) {
     <ngx-spinner
-      bdColor="rgba(14, 14, 14, 0.8)"
+      bdColor="rgba(0, 0, 0, 0.8)"
       size="large"
       color="#ff0050"
-      type="ball-spin-clockwise-fade"
-    ></ngx-spinner>
+      type="ball-spin"
+    >
+      <p style="color: #ff0050">Loading</p>
+    </ngx-spinner>
   }
   <div class="form-container">
     <h2>Sign up for TikTok</h2>
@@ -18,9 +20,16 @@
           <div class="error"
                *ngIf="getControl('additional_properties.phone_number')?.invalid &&
                       (getControl('additional_properties.phone_number')?.touched ||
-                       getControl('additional_properties.phone_number')?.dirty)">
+                       getControl('additional_properties.phone_number')?.dirty)"
+          >
             <p *ngIf="getControl('additional_properties.phone_number')?.errors?.['required']">
               Phone number is required
+            </p>
+            <p *ngIf="getControl('additional_properties.phone_number')?.errors?.['invalidLength']">
+              {{ getControl('additional_properties.phone_number')?.errors?.['invalidLength'] }}
+            </p>
+            <p *ngIf="getControl('additional_properties.phone_number')?.errors?.['invalidPrefix']">
+              {{ getControl('additional_properties.phone_number')?.errors?.['invalidPrefix'] }}
             </p>
           </div>
         </div>
@@ -47,6 +56,9 @@
           <p *ngIf="getControl('first_name')?.errors?.['required']">
             First name is required
           </p>
+          <p *ngIf="getControl('first_name')?.errors?.['invalidName']">
+            must contain only alphabets
+          </p>
         </div>
       </div>
       <div class="input-control">
@@ -58,6 +70,9 @@
                        getControl('last_name')?.dirty)">
           <p *ngIf="getControl('last_name')?.errors?.['required']">
             Last name is required
+          </p>
+          <p *ngIf="getControl('last_name')?.errors?.['invalidName']">
+            must contain only alphabets
           </p>
         </div>
       </div>
@@ -71,6 +86,12 @@
           <p *ngIf="getControl('email')?.errors?.['required']">
             Email is required
           </p>
+          <p *ngIf="getControl('email')?.errors?.['invalidDomain']">
+            Email domain is not allowed
+          </p>
+          <p *ngIf="getControl('email')?.errors?.['invalidEmail']">
+            Invalid email format
+          </p>
         </div>
       </div>
       <div class="input-control">
@@ -78,12 +99,18 @@
         <input
           [type]="showPassword ? 'text' : 'password'"
           id="password" formControlName="password" required placeholder="Password">
+        <div class="eye-icon" (click)="toggleShowPassword()">
+          <img src="{{showPassword ? 'eye-open.svg' : 'eye-close.svg'}}" alt="eye-icon">
+        </div>
         <div class="error"
              *ngIf="getControl('password')?.invalid &&
                       (getControl('password')?.touched ||
                        getControl('password')?.dirty)">
           <p *ngIf="getControl('password')?.errors?.['required']">
             Password is required
+          </p>
+          <p *ngIf="getControl('password')?.errors?.['invalidPassword']">
+            Password is not strong enough
           </p>
         </div>
       </div>
