@@ -20,7 +20,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideAnimationsAsync(),
     provideHttpClient(),
-    provideSpinnerConfig({type: 'ball-spin-clockwise-fade'}),
+    provideSpinnerConfig({type: 'ball-spin'}),
     provideStore(),
     provideState(authenticationFeature),
     provideEffects([AuthEffects, Toast, Spinner, Route]),
