@@ -2,11 +2,11 @@
   @if (loading()) {
     <ngx-spinner
       bdColor="rgba(14, 14, 14, 0.8)"
-      size="large"
+      size="medium"
       color="#ff0050"
       type="ball-spin"
     >
-      <p style="color: #ff0050">Loading</p>
+      <p style="color: #ff0050; font-size: 20px">Loading</p>
     </ngx-spinner>
   }
   <div class="form-container">
@@ -51,7 +51,7 @@
           </p>
         </div>
       </div>
-      <button type="submit" [disabled]="loginForm.invalid">Log in</button>
+      <button type="submit" [disabled]="loginForm.invalid || loading()">Log in</button>
     </form>
     <p class="account">
       Already have an account?

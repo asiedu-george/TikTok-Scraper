@@ -2,50 +2,17 @@
   @if (loading()) {
     <ngx-spinner
       bdColor="rgba(0, 0, 0, 0.8)"
-      size="large"
+      size="medium"
       color="#ff0050"
       type="ball-spin"
     >
-      <p style="color: #ff0050">Loading</p>
+      <p style="color: #ff0050; font-size: 20px">Loading</p>
     </ngx-spinner>
   }
   <div class="form-container">
     <h2>Sign up for TikTok</h2>
 
     <form [formGroup]="signupForm" (ngSubmit)="onRegisterSubmit()" class="form-group">
-      <div formGroupName="additional_properties" class="additional_properties">
-        <div class="input-control">
-          <label for="phone_number">Phone</label>
-          <input type="tel" id="phone_number" formControlName="phone_number" required placeholder="Phone number">
-          <div class="error"
-               *ngIf="getControl('additional_properties.phone_number')?.invalid &&
-                      (getControl('additional_properties.phone_number')?.touched ||
-                       getControl('additional_properties.phone_number')?.dirty)"
-          >
-            <p *ngIf="getControl('additional_properties.phone_number')?.errors?.['required']">
-              Phone number is required
-            </p>
-            <p *ngIf="getControl('additional_properties.phone_number')?.errors?.['invalidLength']">
-              {{ getControl('additional_properties.phone_number')?.errors?.['invalidLength'] }}
-            </p>
-            <p *ngIf="getControl('additional_properties.phone_number')?.errors?.['invalidPrefix']">
-              {{ getControl('additional_properties.phone_number')?.errors?.['invalidPrefix'] }}
-            </p>
-          </div>
-        </div>
-        <div class="input-control">
-          <label for="date_of_birth">Date of Birth</label>
-          <input type="date" id="date_of_birth" formControlName="date_of_birth" required>
-          <div class="error"
-               *ngIf="getControl('additional_properties.date_of_birth')?.invalid &&
-                      (getControl('additional_properties.date_of_birth')?.touched ||
-                       getControl('additional_properties.date_of_birth')?.dirty)">
-            <p *ngIf="getControl('additional_properties.date_of_birth')?.errors?.['required']">
-              Dob is required
-            </p>
-          </div>
-        </div>
-      </div>
       <div class="input-control">
         <label for="first_name">First Name</label>
         <input type="text" id="first_name" formControlName="first_name" required placeholder="First name">
@@ -114,7 +81,7 @@
           </p>
         </div>
       </div>
-      <button type="submit" [disabled]="signupForm.invalid">Sign up</button>
+      <button type="submit" [disabled]="signupForm.invalid || loading()">Sign up</button>
       <p class="terms">
         By continuing with an account located in Ghana, you agree
         to our <strong>Terms of Service</strong> and acknowledge that
