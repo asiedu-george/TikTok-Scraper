@@ -4,8 +4,10 @@
       bdColor="rgba(14, 14, 14, 0.8)"
       size="large"
       color="#ff0050"
-      type="ball-spin-clockwise-fade"
-    ></ngx-spinner>
+      type="ball-spin"
+    >
+      <p style="color: #ff0050">Loading</p>
+    </ngx-spinner>
   }
   <div class="form-container">
     <h2>Log in to TikTok</h2>
@@ -21,6 +23,12 @@
           <p *ngIf="getControl('email')?.errors?.['required']">
             Email is required
           </p>
+          <p *ngIf="getControl('email')?.errors?.['invalidDomain']">
+            Email domain is not allowed
+          </p>
+          <p *ngIf="getControl('email')?.errors?.['invalidEmail']">
+            Invalid email format
+          </p>
         </div>
       </div>
       <div class="input-control">
@@ -28,12 +36,18 @@
         <input
           [type]="showPassword ? 'text' : 'password'"
           id="password" formControlName="password" required placeholder="Password">
+        <div class="eye-icon" (click)="toggleShowPassword()">
+          <img src="{{showPassword ? 'eye-open.svg' : 'eye-close.svg'}}" alt="eye-icon">
+        </div>
         <div class="error"
              *ngIf="getControl('password')?.invalid &&
                       (getControl('password')?.touched ||
                        getControl('password')?.dirty)">
           <p *ngIf="getControl('password')?.errors?.['required']">
             Password is required
+          </p>
+          <p *ngIf="getControl('password')?.errors?.['invalidPassword']">
+            Password is not strong enough
           </p>
         </div>
       </div>

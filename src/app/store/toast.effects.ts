@@ -38,9 +38,9 @@ export const loginToastEffects = createEffect(
 export const authFailureToastEffects = createEffect(
   (actions$ = inject(Actions), toast = inject(NgToastService)) => {
     return actions$.pipe(
-      ofType(AuthenticationActions.registerSuccess),
+      ofType(AuthenticationActions.authenticationFailure),
       tap(() =>
-        toast.success(
+        toast.danger(
           constants.errorMessage,
           constants.error,
           constants.toastDuration

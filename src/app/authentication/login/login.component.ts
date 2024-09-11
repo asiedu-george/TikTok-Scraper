@@ -5,6 +5,8 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Login} from "../../model/auth";
 import {AuthenticationActions} from "../store/auth.actions";
 import {selectLoading} from "../store/auth.selectors";
+import {emailValidator} from "../../validators/emailValidator";
+import {passwordValidator} from "../../validators/passwordValidator";
 
 @Component({
   selector: 'login',
@@ -18,8 +20,8 @@ export class LoginComponent {
 
   constructor(private store: Store<AuthenticationState>, private fb: FormBuilder) {
     this.loginForm = this.fb.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required],
+      email: ['', [Validators.required, emailValidator()]],
+      password: ['', [Validators.required, passwordValidator()]],
     })
   }
 

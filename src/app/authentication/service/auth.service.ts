@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient} from '@angular/common/http';
 import { environment } from '../../../environments/environment'
-import {AuthResponse, Login, LoginResponse, Register, UpdatePassword, UserProfile} from "../../model/auth";
+import {AuthResponse, Login, LoginResponse, Register, UpdatePassword, UserProfile} from '../../model/auth';
+import {Store} from '@ngrx/store';
+import {AuthenticationState} from '../store/auth.state';
+import {selectRefreshToken} from '../store/auth.selectors';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly authUrl = environment.authUrl
+  private authUrl = environment.authUrl;
+  private token = this.store.selectSignal(selectRefreshToken);
 
-  public constructor(private http: HttpClient) {}
+  public constructor(private http: HttpClient, private store: Store<AuthenticationState>) {}
 
   public register(user: Register) {
     return this.http.post<AuthResponse>(`${environment.authUrl}user/signup`, user)
@@ -27,8 +31,11 @@ export class AuthService {
     return this.http.post<AuthResponse>(`${environment.authUrl}user/update-password`, password)
   }
 
-  public refreshToken(refresh_token: string) {
-    return this.http.post<LoginResponse>(`${environment.authUrl}user/refresh_token`, refresh_token)
+  public refreshToken() {
+    return this.http.post<LoginResponse>(
+      `${environment.authUrl}user/refresh_token`,
+      {refreshToken: this.token() }
+    )
   }
 
   public userProfile() {
