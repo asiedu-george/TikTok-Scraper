@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import {Store} from "@ngrx/store";
-import {AuthenticationState} from "../store/auth.state";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Login} from "../../model/auth";
-import {AuthenticationActions} from "../store/auth.actions";
-import {selectLoading} from "../store/auth.selectors";
-import {emailValidator} from "../../validators/emailValidator";
-import {passwordValidator} from "../../validators/passwordValidator";
+import {Store} from '@ngrx/store';
+import {AuthenticationState} from '../store/auth.state';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Login} from '../../model/auth';
+import {AuthenticationActions} from '../store/auth.actions';
+import {selectLoading} from '../store/auth.selectors';
+import {emailValidator} from '../../validators/emailValidator';
+import {passwordValidator} from '../../validators/passwordValidator';
 
 @Component({
   selector: 'login',
@@ -26,17 +26,18 @@ export class LoginComponent {
   }
 
   public onLoginSubmit(): void {
-    if(this.loginForm.invalid) return
+    if(this.loginForm.invalid) return;
 
-    const user: Login = this.loginForm.value
-    this.store.dispatch(AuthenticationActions.login({user}))
+    const user: Login = this.loginForm.value;
+    this.store.dispatch(AuthenticationActions.login({user}));
+    this.loginForm.reset();
   }
 
   public toggleShowPassword(): void {
-    this.showPassword = !this.showPassword
+    this.showPassword = !this.showPassword;
   }
 
   public getControl(value: string) {
-    return this.loginForm.get(value)
+    return this.loginForm.get(value);
   }
 }
