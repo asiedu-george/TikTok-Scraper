@@ -18,7 +18,7 @@ export const loginRouterEffects = createEffect(
   (actions$ = inject(Actions), route = inject(Router)) => {
     return actions$.pipe(
       ofType(AuthenticationActions.loginSuccess),
-      tap(() => route.navigateByUrl('/trending'))
+      tap(() => route.navigateByUrl('/foryou'))
     )
   },
   { functional: true, dispatch: false }
