@@ -28,10 +28,8 @@ const checkAuth = () => {
   const token = store.selectSignal(selectLoginToken);
 
   if (token()) {
-    console.log('Authenticated', token());
     return true;
   } else {
-    console.log('Not Authenticated', token());
     handleAuthorizedAccess(store, toast);
     return false;
   }
