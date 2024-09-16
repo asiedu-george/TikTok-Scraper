@@ -6,4 +6,5 @@ export const constants = {
   validateError: 'User not validated',
   unauthorizedAccess: 'Unauthorized route access, please login',
   accessDenied: 'Access denied',
+  storageKey: 'appState'
 }
