@@ -8,7 +8,7 @@ export const routes: Routes = [
       .then(am => am.AuthenticationModule)
   },
   {
-    path: 'foryou',
+    path: 'trending',
     loadChildren: () => import('./trending/trending.module')
       .then(tm => tm.TrendingModule),
     canActivate: [authGuard]
